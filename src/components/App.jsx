@@ -29,6 +29,8 @@ function App() {
     }
   }
 
+  console.log('hi')
+
   return (
     <section className="todoapp">
       <NewTaskForm
