@@ -33,12 +33,7 @@ function App() {
 
   return (
     <section className="todoapp">
-      <NewTaskForm
-        inputValue={inputValue}
-        setInputValue={setInputValue}
-        todos={todos}
-        setTodos={setTodos}
-      />
+      <NewTaskForm inputValue={inputValue} setInputValue={setInputValue} todos={todos} setTodos={setTodos} />
       <section className="main">
         <TaskList todos={todos} setTodos={setTodos} filterTodo={filterTodo} />
         <Footer todos={todos} setTodos={setTodos} setStatus={setStatus} />

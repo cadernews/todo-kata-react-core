@@ -9,5 +9,6 @@
   "jsxBracketSameLine": true,
   "proseWrap": "never",
   "htmlWhitespaceSensitivity": "strict",
-  "endOfLine": "crlf"
+  "endOfLine": "auto",
+  "printWidth": 160
 }

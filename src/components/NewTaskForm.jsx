@@ -32,14 +32,7 @@ const NewTaskForm = ({ inputValue, setInputValue, todos, setTodos }) => {
   return (
     <header className="header">
       <h1>todos</h1>
-      <input
-        value={inputValue}
-        onChange={inputValueHandle}
-        onKeyDown={handleKeyPress}
-        className="new-todo"
-        placeholder="What needs to be done?"
-        autoFocus
-      />
+      <input value={inputValue} onChange={inputValueHandle} onKeyDown={handleKeyPress} className="new-todo" placeholder="What needs to be done?" autoFocus />
     </header>
   )
 }

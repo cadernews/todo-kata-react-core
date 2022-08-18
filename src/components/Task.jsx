@@ -7,10 +7,7 @@ const Task = ({ todos, setTodos, todo, completed, description, created }) => {
   }
 
   const checkedHandler = (e) => {
-    if (
-      e.target.className === 'description' ||
-      e.target.className === 'toggle'
-    ) {
+    if (e.target.className === 'description' || e.target.className === 'toggle') {
       setTodos(
         todos.map((item) => {
           if (item.id === todo.id) {
@@ -27,12 +24,7 @@ const Task = ({ todos, setTodos, todo, completed, description, created }) => {
   return (
     <li onClick={(e) => checkedHandler(e)}>
       <div className="view">
-        <input
-          className="toggle"
-          type="checkbox"
-          checked={completed}
-          readOnly
-        />
+        <input className="toggle" type="checkbox" checked={completed} readOnly />
         <label className={completed ? 'done' : ''}>
           <span className="description">{description}</span>
           <span className="created">{`created ${created} ago`}</span>

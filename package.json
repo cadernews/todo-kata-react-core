@@ -69,5 +69,17 @@
       "format",
       "git add"
     ]
-  }
+  },
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cadernews/todo.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cadernews/todo/issues"
+  },
+  "homepage": "https://github.com/cadernews/todo#readme",
+  "description": ""
 }
