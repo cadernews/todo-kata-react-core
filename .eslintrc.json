@@ -3,6 +3,7 @@
   "extends": [
     "eslint:recommended",
     "plugin:react/recommended",
+    "plugin:react-hooks/recommended",
     "plugin:prettier/recommended",
     "plugin:import/errors",
     "plugin:import/warnings"
@@ -13,7 +14,7 @@
     "ecmaVersion": 12,
     "sourceType": "module"
   },
-  "plugins": ["react", "prettier", "import", "react-hooks"],
+  "plugins": ["react", "prettier", "import"],
   "rules": {
     "import/no-unresolved": [2, { "caseSensitive": false }],
     "import/order": [
@@ -40,9 +41,6 @@
     "semi": ["error", "never"]
   },
   "settings": {
-    "react": {
-      "version": "detect"
-    },
     "import/resolver": {
       "node": {
         "extensions": [".js", ".jsx", ".ts", ".tsx"],

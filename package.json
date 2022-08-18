@@ -10,7 +10,6 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-scripts": "^5.0.1",
-    "svgo": "^2.8.0",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
@@ -69,17 +68,5 @@
       "format",
       "git add"
     ]
-  },
-  "main": "index.js",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/cadernews/todo.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/cadernews/todo/issues"
-  },
-  "homepage": "https://github.com/cadernews/todo#readme",
-  "description": ""
+  }
 }

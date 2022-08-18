@@ -6,7 +6,15 @@ import Task from './Task'
 const TaskList = ({ todos, setTodos, filterTodo }) => {
   const todo = filterTodo.map((t) => {
     const { id, ...otherProps } = t
-    return <Task {...otherProps} todos={todos} setTodos={setTodos} todo={t} key={id} />
+    return (
+      <Task
+        {...otherProps}
+        todos={todos}
+        setTodos={setTodos}
+        todo={t}
+        key={id}
+      />
+    )
   })
   return <ul className="todo-list">{todo}</ul>
 }
@@ -14,13 +22,13 @@ const TaskList = ({ todos, setTodos, filterTodo }) => {
 TaskList.defaultProps = {
   todos: [],
   setTodos: () => {},
-  filterTodo: () => {}
+  filterTodo: []
 }
 
 TaskList.propTypes = {
   todos: PropTypes.array,
   setTodos: PropTypes.func,
-  filterTodo: PropTypes.func
+  filterTodo: PropTypes.array
 }
 
 export default TaskList
