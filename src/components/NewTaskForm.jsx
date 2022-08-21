@@ -1,17 +1,13 @@
 import React from 'react'
 import { v4 as uuid } from 'uuid'
-import formatDistanceToNow from 'date-fns/formatDistanceToNow'
 import PropTypes from 'prop-types'
 
 const NewTaskForm = ({ inputValue, setInputValue, todos, setTodos }) => {
-  const dateCreated = formatDistanceToNow(new Date(Date.now()))
-
   const addTask = (inputValue) => {
     if (inputValue) {
       const newTask = {
         id: uuid(),
         description: inputValue,
-        created: dateCreated,
         completed: false
       }
       setTodos([newTask, ...todos])

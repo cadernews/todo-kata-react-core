@@ -1,9 +1,25 @@
-import React from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
+import { BsCheck } from 'react-icons/bs'
+import formatDistanceToNow from 'date-fns/formatDistanceToNow'
 
-const Task = ({ todos, setTodos, todo, completed, description, created }) => {
+const Task = ({ todos, setTodos, todo, completed, description }) => {
+  const [isEditMode, setIsEditMode] = useState(false)
+  const [value, setValue] = useState(description)
   const deleteHandler = () => {
     setTodos(todos.filter((t) => t.id !== todo.id))
+  }
+
+  const saveTodo = () => {
+    setTodos(
+      todos.map((item) => {
+        if (item.id === todo.id) {
+          return { ...item, description: value }
+        }
+        return item
+      })
+    )
+    setIsEditMode(false)
   }
 
   const checkedHandler = (e) => {
@@ -31,14 +47,34 @@ const Task = ({ todos, setTodos, todo, completed, description, created }) => {
           className="toggle"
           type="checkbox"
           checked={completed}
+          disabled={isEditMode}
           readOnly
         />
         <label className={completed ? 'done' : ''}>
-          <span className="description">{description}</span>
-          <span className="created">{`created ${created} ago`}</span>
+          {isEditMode ? (
+            <input
+              value={value}
+              onChange={(evt) => {
+                setValue(evt.target.value)
+              }}
+            />
+          ) : (
+            <span className="description">{description}</span>
+          )}
+          <span className="created">
+            {formatDistanceToNow(new Date(), { includeSeconds: true })}
+          </span>
         </label>
-
-        <button className="icon icon-edit"></button>
+        {isEditMode ? (
+          <button className="icon icon-save" onClick={(e) => saveTodo(e)}>
+            <BsCheck />
+          </button>
+        ) : (
+          <button
+            className="icon icon-edit"
+            onClick={() => setIsEditMode(true)}
+          />
+        )}
         <button className="icon icon-destroy" onClick={deleteHandler}></button>
       </div>
     </li>

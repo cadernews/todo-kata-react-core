@@ -271,6 +271,11 @@ body {
   content: '✎';
 }
 
+.todo-list li .icon-save {
+  right: 43px;
+  bottom: -5px;
+}
+
 .todo-list li .edit {
   display: none;
 }
