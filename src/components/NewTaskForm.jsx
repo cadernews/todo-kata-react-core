@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 
 const NewTaskForm = ({ inputValue, setInputValue, todos, setTodos }) => {
   const addTask = (inputValue) => {
-    if (inputValue) {
+    if (inputValue && inputValue.trim().length !== 0) {
       const newTask = {
         id: uuid(),
         description: inputValue,

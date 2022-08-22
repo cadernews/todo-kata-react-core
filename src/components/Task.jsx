@@ -25,6 +25,7 @@ const Task = ({ todos, setTodos, todo, completed, description }) => {
   const checkedHandler = (e) => {
     if (
       e.target.className === 'description' ||
+      e.target.className === 'done' ||
       e.target.className === 'toggle'
     ) {
       setTodos(
@@ -62,7 +63,9 @@ const Task = ({ todos, setTodos, todo, completed, description }) => {
             <span className="description">{description}</span>
           )}
           <span className="created">
-            {formatDistanceToNow(new Date(), { includeSeconds: true })}
+            {`created ${formatDistanceToNow(new Date(), {
+              includeSeconds: true
+            })} ago`}
           </span>
         </label>
         {isEditMode ? (
