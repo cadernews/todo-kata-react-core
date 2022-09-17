@@ -3,7 +3,9 @@ import PropTypes from 'prop-types'
 import { BsCheck } from 'react-icons/bs'
 import formatDistanceToNow from 'date-fns/formatDistanceToNow'
 
-const Task = ({ todos, setTodos, todo, completed, description }) => {
+import Timer from './Timer'
+
+const Task = ({ todos, setTodos, todo, completed, description, time }) => {
   const [isEditMode, setIsEditMode] = useState(false)
   const [value, setValue] = useState(description)
   const deleteHandler = () => {
@@ -62,6 +64,7 @@ const Task = ({ todos, setTodos, todo, completed, description }) => {
           ) : (
             <span className="description">{description}</span>
           )}
+          <Timer time={time} completed={completed} />
           <span className="created">
             {`created ${formatDistanceToNow(new Date(), {
               includeSeconds: true
