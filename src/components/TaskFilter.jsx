@@ -1,9 +1,8 @@
-import React from 'react'
 import PropTypes from 'prop-types'
 
 const TaskFilter = ({ setStatus }) => {
-  const statusHandler = (e) => {
-    setStatus(e.target.className)
+  const statusHandler = ({ target }) => {
+    setStatus(target.className)
   }
   return (
     <ul className="filters" onClick={statusHandler}>

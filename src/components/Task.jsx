@@ -24,11 +24,11 @@ const Task = ({ todos, setTodos, todo, completed, description, time }) => {
     setIsEditMode(false)
   }
 
-  const checkedHandler = (e) => {
+  const checkedHandler = ({ target }) => {
     if (
-      e.target.className === 'description' ||
-      e.target.className === 'done' ||
-      e.target.className === 'toggle'
+      target.className === 'description' ||
+      target.className === 'done' ||
+      target.className === 'toggle'
     ) {
       setTodos(
         todos.map((item) => {
@@ -78,6 +78,7 @@ const Task = ({ todos, setTodos, todo, completed, description, time }) => {
         ) : (
           <button
             className="icon icon-edit"
+            disabled={completed}
             onClick={() => setIsEditMode(true)}
           />
         )}
@@ -93,7 +94,8 @@ Task.defaultProps = {
   todo: {},
   completed: false,
   description: '',
-  created: ''
+  created: '',
+  time: 0
 }
 
 Task.defaultProps = {
@@ -102,7 +104,8 @@ Task.defaultProps = {
   todo: PropTypes.object,
   completed: PropTypes.bool,
   description: PropTypes.string,
-  created: PropTypes.string
+  created: PropTypes.string,
+  time: PropTypes.number
 }
 
 export default Task

@@ -1,18 +1,17 @@
-/* eslint-disable no-unused-vars */
-import React from 'react'
+import { useState, useEffect } from 'react'
 import { BsPlayFill, BsPauseFill } from 'react-icons/bs'
+import PropTypes from 'prop-types'
 
 import { getPadeTime } from './helper/getPadTime'
-// import PropTypes from 'prop-types'
 
 function Timer({ time, completed }) {
-  const [timeLeft, setTimeLeft] = React.useState(time * 60)
-  const [isRunning, setIsRunning] = React.useState(false)
+  const [timeLeft, setTimeLeft] = useState(time * 60)
+  const [isRunning, setIsRunning] = useState(false)
 
   const minutes = getPadeTime(Math.floor(timeLeft / 60))
   const seconds = getPadeTime(timeLeft - minutes * 60)
 
-  React.useEffect(() => {
+  useEffect(() => {
     const intervalId = setInterval(() => {
       isRunning && setTimeLeft((timeLeft) => (timeLeft >= 1 ? timeLeft - 1 : 0))
     }, 1000)
@@ -23,11 +22,11 @@ function Timer({ time, completed }) {
   }, [isRunning])
 
   const pauseHandle = () => {
-    setIsRunning(false)
+    if (!completed && timeLeft > 0) setIsRunning(false)
   }
 
   const playHandle = () => {
-    setIsRunning(true)
+    if (!completed && timeLeft > 0) setIsRunning(true)
   }
 
   return (
@@ -48,6 +47,12 @@ function Timer({ time, completed }) {
   )
 }
 
-// Timer.propTypes = {}
+Timer.defaultProps = {
+  time: ''
+}
+
+Timer.propTypes = {
+  time: PropTypes.string
+}
 
 export default Timer

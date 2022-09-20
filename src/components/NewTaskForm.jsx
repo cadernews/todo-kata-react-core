@@ -1,10 +1,11 @@
 /* eslint-disable no-unused-vars */
-import React from 'react'
+
 import { v4 as uuid } from 'uuid'
 import PropTypes from 'prop-types'
+import { useState } from 'react'
 
 const NewTaskForm = ({ inputValue, setInputValue, todos, setTodos }) => {
-  const [inputTime, setInputTime] = React.useState('')
+  const [inputTime, setInputTime] = useState('')
 
   const addTask = (inputValue) => {
     if (inputValue && inputValue.trim().length !== 0) {
@@ -26,12 +27,22 @@ const NewTaskForm = ({ inputValue, setInputValue, todos, setTodos }) => {
     }
   }
 
-  const inputValueHandle = (e) => {
-    setInputValue(e.target.value)
+  const inputValueHandle = ({ target }) => {
+    setInputValue(target.value)
   }
 
-  const inputTimeHandle = (e) => {
-    setInputTime(e.target.value)
+  const inputTimeHandle = ({ target }) => {
+    const time = Number(target.value)
+    const reg = /^-?[0-9]\d*\.?\d*$/
+    if (time === '' || reg.test(time)) {
+      setInputTime(target.value)
+    }
+  }
+
+  const onKeyPressHandle = (event) => {
+    return event.charCode == 8 || event.charCode == 0 || event.charCode == 13
+      ? null
+      : event.charCode >= 48 && event.charCode <= 57
   }
 
   return (
@@ -46,7 +57,8 @@ const NewTaskForm = ({ inputValue, setInputValue, todos, setTodos }) => {
         autoFocus
       />
       <input
-        type="number"
+        type="text"
+        pattern="[0-9]*"
         value={inputTime}
         onChange={inputTimeHandle}
         onKeyDown={handleKeyPress}
