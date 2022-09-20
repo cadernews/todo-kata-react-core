@@ -1,1 +1,1 @@
-https://todo-kata-react-core.vercel.app/
+https://todo-kata-react-core-lrum5mwnc-cadernews.vercel.app/
