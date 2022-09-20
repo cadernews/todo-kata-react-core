@@ -1,14 +1,19 @@
-import React from 'react'
+/* eslint-disable no-unused-vars */
+
 import { v4 as uuid } from 'uuid'
 import PropTypes from 'prop-types'
+import { useState } from 'react'
 
 const NewTaskForm = ({ inputValue, setInputValue, todos, setTodos }) => {
+  const [inputTime, setInputTime] = useState('')
+
   const addTask = (inputValue) => {
     if (inputValue && inputValue.trim().length !== 0) {
       const newTask = {
         id: uuid(),
         description: inputValue,
-        completed: false
+        completed: false,
+        time: inputTime
       }
       setTodos([newTask, ...todos])
     }
@@ -18,11 +23,26 @@ const NewTaskForm = ({ inputValue, setInputValue, todos, setTodos }) => {
     if (e.key === 'Enter') {
       addTask(inputValue)
       setInputValue('')
+      setInputTime('')
     }
   }
 
-  const inputValueHandle = (e) => {
-    setInputValue(e.target.value)
+  const inputValueHandle = ({ target }) => {
+    setInputValue(target.value)
+  }
+
+  const inputTimeHandle = ({ target }) => {
+    const time = Number(target.value)
+    const reg = /^-?[0-9]\d*\.?\d*$/
+    if (time === '' || reg.test(time)) {
+      setInputTime(target.value)
+    }
+  }
+
+  const onKeyPressHandle = (event) => {
+    return event.charCode == 8 || event.charCode == 0 || event.charCode == 13
+      ? null
+      : event.charCode >= 48 && event.charCode <= 57
   }
 
   return (
@@ -35,6 +55,15 @@ const NewTaskForm = ({ inputValue, setInputValue, todos, setTodos }) => {
         className="new-todo"
         placeholder="What needs to be done?"
         autoFocus
+      />
+      <input
+        type="text"
+        pattern="[0-9]*"
+        value={inputTime}
+        onChange={inputTimeHandle}
+        onKeyDown={handleKeyPress}
+        className="new-todo"
+        placeholder="time per task(min)"
       />
     </header>
   )

@@ -3,7 +3,9 @@ import PropTypes from 'prop-types'
 import { BsCheck } from 'react-icons/bs'
 import formatDistanceToNow from 'date-fns/formatDistanceToNow'
 
-const Task = ({ todos, setTodos, todo, completed, description }) => {
+import Timer from './Timer'
+
+const Task = ({ todos, setTodos, todo, completed, description, time }) => {
   const [isEditMode, setIsEditMode] = useState(false)
   const [value, setValue] = useState(description)
   const deleteHandler = () => {
@@ -22,11 +24,11 @@ const Task = ({ todos, setTodos, todo, completed, description }) => {
     setIsEditMode(false)
   }
 
-  const checkedHandler = (e) => {
+  const checkedHandler = ({ target }) => {
     if (
-      e.target.className === 'description' ||
-      e.target.className === 'done' ||
-      e.target.className === 'toggle'
+      target.className === 'description' ||
+      target.className === 'done' ||
+      target.className === 'toggle'
     ) {
       setTodos(
         todos.map((item) => {
@@ -62,6 +64,7 @@ const Task = ({ todos, setTodos, todo, completed, description }) => {
           ) : (
             <span className="description">{description}</span>
           )}
+          <Timer time={time} completed={completed} />
           <span className="created">
             {`created ${formatDistanceToNow(new Date(), {
               includeSeconds: true
@@ -75,6 +78,7 @@ const Task = ({ todos, setTodos, todo, completed, description }) => {
         ) : (
           <button
             className="icon icon-edit"
+            disabled={completed}
             onClick={() => setIsEditMode(true)}
           />
         )}
@@ -90,7 +94,8 @@ Task.defaultProps = {
   todo: {},
   completed: false,
   description: '',
-  created: ''
+  created: '',
+  time: 0
 }
 
 Task.defaultProps = {
@@ -99,7 +104,8 @@ Task.defaultProps = {
   todo: PropTypes.object,
   completed: PropTypes.bool,
   description: PropTypes.string,
-  created: PropTypes.string
+  created: PropTypes.string,
+  time: PropTypes.number
 }
 
 export default Task
